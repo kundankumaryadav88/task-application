@@ -4,6 +4,7 @@ import Taskform from "../components/Taskform"
 import Header from "./Header"
 const TaskCreate = () => {
     return(<Box>
+        <Header />
         <Container>
             <Taskform mode="create" />
         </Container>

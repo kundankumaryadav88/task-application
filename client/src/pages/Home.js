@@ -10,17 +10,17 @@ import {
 import { Container } from "@mui/system";
 import { useState, useEffect } from "react";
 import axios from "../services/api";
-import axiosInstance from "../services/api";
+// import axiosInstance from "../services/api";
 import { useDispatch, useSelector } from "react-redux";
 import { setTasks } from "../redux/TaskSlice";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 import Task from "../components/Task";
-import { deleteTask } from "../redux/TaskSlice";
+// import { deleteTask } from "../redux/TaskSlice";
 import Stack from "@mui/material/Stack";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 const Home = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const [typeFilter, setTypeFilter] = useState("");
   const [dayFilter, setDayFilter] = useState("");
@@ -34,19 +34,10 @@ const Home = () => {
     axios.get(`/task?type=${typeFilter}&day=${dayFilter}`).then((res) => {
       dispatch(setTasks(res.data.tasks));
     });
-  }, [typeFilter, dayFilter]);
+  }, [typeFilter, dayFilter, dispatch]);
   const { tasks } = useSelector((state) => state.task);
   const handleTypeChange = (e) => {
     setTypeFilter(e.target.value)
-  };
-  const handleDeleteTask = async (taskId) => {
-    try {
-      await axiosInstance.delete(`/task/${taskId}`);
-      dispatch(deleteTask(taskId));
-      console.log("Task deleted successfully");
-    } catch (error) {
-      console.error("Error deleting task:", error);
-    }
   };
   return (
     <Box>
@@ -89,13 +80,12 @@ const Home = () => {
             
             {tasks.map((task, idx) => (
               <Grid item xs={12} md={3} key={`${idx}-${task.id}`}>
-                {/* <Button onChange={handleDeleteTask(task._id)}>Delete</Button> */}
+                <Button>Delete</Button>
                 <Link
                   style={{ textDecoration: "none" }}
                   to={`/task/${task._id}`}
                 >
-                  {task._id}
-                  <Task task={task} />
+                  <Task  task={task} />
                 </Link>
               </Grid>
             ))}
