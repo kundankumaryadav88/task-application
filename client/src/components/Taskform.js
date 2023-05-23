@@ -170,7 +170,7 @@ const TaskForm = ({ mode = "edit", task }) => {
                 background="#00D5FA"
               >
                 {mode === "edit" ? 'Edit Task' : 'Create Task' }
-              </Button>
+              </Button> 
             </Box>
           </form>
         </Box>

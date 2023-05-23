@@ -10,17 +10,15 @@ import {
 import { Container } from "@mui/system";
 import { useState, useEffect } from "react";
 import axios from "../services/api";
-// import axiosInstance from "../services/api";
+import axiosInstance from "../services/api";
 import { useDispatch, useSelector } from "react-redux";
-import { setTasks } from "../redux/TaskSlice";
+import { setTasks, deleteTask } from "../redux/TaskSlice";
 import Header from "./Header";
 import { Link } from "react-router-dom";
 import Task from "../components/Task";
-// import { deleteTask } from "../redux/TaskSlice";
 import Stack from "@mui/material/Stack";
-// import { useNavigate } from "react-router-dom";
 const Home = () => {
-  // const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const [typeFilter, setTypeFilter] = useState("");
   const [dayFilter, setDayFilter] = useState("");
@@ -37,7 +35,7 @@ const Home = () => {
   }, [typeFilter, dayFilter, dispatch]);
   const { tasks } = useSelector((state) => state.task);
   const handleTypeChange = (e) => {
-    setTypeFilter(e.target.value)
+    setTypeFilter(e.target.value);
   };
   return (
     <Box>
@@ -55,8 +53,9 @@ const Home = () => {
             </Select>
           </FormControl>
           <Stack direction="row" spacing={2}>
-            <Button variant="contained"
-                size="small" href="/task/create">Create Task</Button>
+            <Button variant="contained" size="small" href="/task/create">
+              Create Task
+            </Button>
             {days.map((day, idx) => (
               <Button
                 variant="contained"
@@ -73,20 +72,34 @@ const Home = () => {
           </Stack>
         </Box>
         <Box display="flex" justifyContent="space-between">
-          <Button onClick={() => {setTypeFilter(''); setDayFilter('')}}>Clear filters</Button>
+          <Button
+            onClick={() => {
+              setTypeFilter("");
+              setDayFilter("");
+            }}
+          >
+            Clear filters
+          </Button>
         </Box>
         <Box mt="2rem">
           <Grid container spacing={2}>
-            
             {tasks.map((task, idx) => (
               <Grid item xs={12} md={3} key={`${idx}-${task.id}`}>
-                <Button>Delete</Button>
                 <Link
                   style={{ textDecoration: "none" }}
                   to={`/task/${task._id}`}
                 >
-                  <Task  task={task} />
+                  <Task task={task} />
                 </Link>
+                <Button
+                  onClick={() => {
+                    axiosInstance.delete(`/task/${task._id}`).then((res) => {
+                      dispatch(deleteTask(task._id));
+                    });
+                  }}
+                >
+                  Delete
+                </Button>
               </Grid>
             ))}
           </Grid>
