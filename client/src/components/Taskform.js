@@ -59,11 +59,6 @@ const TaskForm = ({ mode = "edit", task }) => {
       });
     }
   };
-  function handledelete(values){
-    axiosInstance.delete(`/task/${values._id}`, values).then((res) => {
-      navigate("/home");
-    });
-  }
   const isNotMobile = useMediaQuery("(min-width: 768px)");
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
