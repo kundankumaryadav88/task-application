@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Formik } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
@@ -42,19 +43,19 @@ let initialValues = {
 const TaskForm = ({ mode = "edit", task }) => {
   const navigate = useNavigate();
   const types = ["default", "personal", "shopping", "wishlist", "work"];
-  const handleFormSubmit = (values, onSubmitProps) => {
+  const handleFormSubmit = (values) => {
     if (mode === "edit") {
-      axiosInstance.put(`/task/${values._id}`, values).then((res) => {
+      axiosInstance.put(`/task/${values._id}`, values).then(() => {
         navigate("/home");
       });
     } else if(mode === "delete"){
-      axiosInstance.delete(`/task/${values._id}`, values).then((res) => {
+      axiosInstance.delete(`/task/${values._id}`, values).then(() => {
         navigate("/home");
       });
     }
       else {
       values.time = values.time.format('HH:mm')
-      axiosInstance.post(`/task/create`, values).then((res) => {
+      axiosInstance.post(`/task/create`, values).then(() => {
         navigate("/home");
       });
     }
@@ -72,7 +73,6 @@ const TaskForm = ({ mode = "edit", task }) => {
         handleSubmit,
         handleBlur,
         touched,
-        resetForm,
         values,
         handleChange,
         errors,
