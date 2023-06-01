@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL: "https://task-application-gz3v.vercel.app/",
+    baseURL: process.env.REACT_APP_SERVER_URL  || "http://localhost:5000",
     withCredentials: true
 })
 
