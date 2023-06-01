@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, } from "react-redux";
 import axios from "../services/api";
 import { setTask } from "../redux/TaskSlice";
 import { Box, Container } from "@mui/system";
