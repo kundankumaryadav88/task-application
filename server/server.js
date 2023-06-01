@@ -18,6 +18,11 @@ const __dirname = path.dirname(__filename)
 const app = express()
 app.use(express.json())
 app.use(cors({origin:"https://master--relaxed-puppy-391230.netlify.app/", credentials: true}))
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 app.use(cookieParser())
 
 app.use('/assets', express.static(path.join(__dirname , 'public/assets')))
