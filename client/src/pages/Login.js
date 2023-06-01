@@ -47,7 +47,7 @@ const Login = () => {
   const isNotMobile = useMediaQuery("(min-width:768px)");
 
   const handleLogin = async(values , onSubmitProps) => {
-   await axios.post('/auth/login', values).then((res) => {
+   await axios.post('/auth/login/', values).then((res) => {
     onSubmitProps.resetForm()
     dispatch(setLogin(res.data.user))
     navigate('/home')
