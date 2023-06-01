@@ -17,7 +17,7 @@ const __dirname = path.dirname(__filename)
 
 const app = express()
 app.use(express.json())
-app.use(cors({origin:process.env.BASE_URL, credentials: true}))
+app.use(cors({origin:"https://master--relaxed-puppy-391230.netlify.app/", credentials: true}))
 app.use(cookieParser())
 
 app.use('/assets', express.static(path.join(__dirname , 'public/assets')))
