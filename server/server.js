@@ -17,7 +17,7 @@ const __dirname = path.dirname(__filename)
 
 const app = express()
 app.use(express.json())
-app.use(cors({origin:process.env.BASE_URL||'http://localhost:3000', credentials: true}))
+app.use(cors({origin:process.env.BASE_URL, credentials: true}))
 app.use(cookieParser())
 
 app.use('/assets', express.static(path.join(__dirname , 'public/assets')))
@@ -50,7 +50,7 @@ app.use((err,req,res,next) => {
     return res.status(status).json({message})
 })
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT
 mongoose.connect(process.env.MONGO_DB).then(() => {
     app.listen(PORT , () => {
         //One time insertion to Db
