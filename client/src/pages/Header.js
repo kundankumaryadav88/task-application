@@ -16,7 +16,7 @@ const Header = () => {
       justifyContent="space-between"
     >
         <Box fontSize="20px" color="#fff" fontWeight="bold">
-            <Link to="/home" style={{textDecoration: 'none'}}>Task up</Link>
+            <Link to="/home" style={{textDecoration: 'none'}}>Task Management</Link>
         </Box>
         <Box display="flex" alignItems="center" gap="10px">
             <img src={`${process.env.REACT_APP_SERVER_URL}/assets/${user.picturePath}`} width="35px" height="35px" style={{borderRadius: '50%', objectFit: 'cover'}} alt={user.name} />

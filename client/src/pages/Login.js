@@ -88,7 +88,7 @@ const Login = () => {
       }) => (
         <Box p="2rem 0" m="2rem auto" width={isNotMobile ? "50%" : "90%"}>
           <Typography textAlign="center" mb="2rem">
-            Welcome to Taskup
+            Welcome to Task Management
           </Typography>
           <form onSubmit={handleSubmit}>
             <Box display="flex" flexDirection="column" gap="30px">
