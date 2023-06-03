@@ -15,7 +15,7 @@ import Task from './models/Task.js'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const corsOrigin ={
-    origin:"https://master--relaxed-puppy-391230.netlify.app/" , 
+    origin:process.env.BASE_URL || "http://localhost:3000" , 
     credentials:true,            
 }
 const app = express()
