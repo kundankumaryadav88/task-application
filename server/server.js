@@ -11,11 +11,11 @@ import TaskRoutes from './Routes/Task.js'
 import { Register } from './Controllers/User.js'
 import tasks from './data/tasks.js'
 import Task from './models/Task.js'
-
+dotenv.config()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const corsOrigin ={
-    origin:process.env.BASE_URL || "http://localhost:3000" , 
+    origin:"https://647ae8cd4cd976508c0813e9--golden-stroopwafel-78a213.netlify.app/" , 
     credentials:true,            
 }
 const app = express()
@@ -46,7 +46,7 @@ app.use('/task', TaskRoutes)
 app.get('/', (req,res) => {
     res.send('This is a vercel response')
 })
-dotenv.config()
+
 
 app.use((err,req,res,next) => {
     const status = err.status || 500
